@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('landingpagelayouts.app')
 
 @section('title')
     SouFee | Landing Page
 @endsection
 
 @section('content')
-    <div class="w-full mt-16 flex flex-col justify-center items-center">
+    <div class="relative w-full mt-16 flex flex-col justify-center items-center">
         <div class="grid grid-cols-[1fr_0.8fr] space-y-4 max-w-[1350px] items-center" style="grid-template-areas: 
         'teks img'
         'desc img'
@@ -20,7 +20,7 @@
                     Anda mendapatkan manfaat maksimal dari kopi Anda.</p>
             </div>
             <div style="grid-area: button">
-                <button class="bg-[#1C3F3A] text-[#EBE8D8] font-semibold text-[130%] px-20 py-5 rounded-[35px]">Mulai sekarang</button>
+                <button class="bg-[#1C3F3A] text-[#edebe4] font-semibold text-[130%] px-20 py-5 rounded-[35px]">Mulai sekarang</button>
             </div>
             <div style="grid-area: img">
                 <img src="{{ asset('img/hero-img.png') }}" alt="Landing Image">
@@ -29,7 +29,8 @@
         
         <hr class="border-[#c6c6c661] border-[2px] my-24 w-[1350px]">
 
-        <div class="flex flex-col max-w-[1350px] items-center mb-24">
+        <div class="relative z-5 flex flex-col max-w-[1350px] items-center mb-24">
+            <img src="{{ asset('img/Group 8.svg') }}" alt="" class="absolute top-0 left-0 z-[-1]">
             <div class="pb-5">
                 <h1 class="font-semibold text-[#1C3F3A] text-[130%]" id="tentangkami">Tentang Kami</h1>
             </div>
@@ -50,7 +51,8 @@
             </div>
         </div>
 
-        <div class="flex flex-col w-[1350px] mb-24">
+        <div class="relative z-5x flex flex-col w-[1350px] mb-24">
+            <img src="{{ asset('img/Group 8.svg') }}" alt="" class="absolute top-0 right-0 z-[-1]">
             <div class="pb-5">
                 <h1 class="font-semibold text-[#1C3F3A] text-[130%]" id="kelebihan">Kelebihan</h1>
             </div>
@@ -76,7 +78,8 @@
             </div>
         </div>
 
-        <div class="w-[1350px] mb-24">
+        <div class="w-[1350px] mb-24 relative z-5">
+            <img src="{{ asset('img/Group 8.svg') }}" alt="" class="absolute top-[60%] left-0 z-[-1]">
             <div class="pb-5">
                 <h1 class="font-semibold text-[#1C3F3A] text-[150%]" id="faq">FAQ</h1>
             </div>

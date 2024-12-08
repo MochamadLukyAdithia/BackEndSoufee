@@ -1,4 +1,4 @@
-<footer class="bg-[#EBE8D8] w-full flex justify-center">
+<footer class="bg-[#edebe4] w-full flex justify-center">
     <div class="w-[1350px] py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
