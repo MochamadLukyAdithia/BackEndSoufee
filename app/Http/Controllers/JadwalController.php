@@ -8,59 +8,47 @@ use App\Http\Requests\UpdatejadwalRequest;
 
 class JadwalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
-    {
-        //
+    { 
+        $jadwals = jadwal::all();
+        return view("Pengepul.pages.jadwal", compact("jadwals"));
+            
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view("create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorejadwalRequest $request)
-    {
-        //
+    // public function store(Request $request)
+    // {
+    //     Jadwal::create([
+    //         "name" => $request->name,
+    //         "email" => $request->email,
+    //         "phone" => $request->phone
+    //     ]);
+
+    //     return redirect()->route("homepage");
+    // }
+
+    public function edit(Jadwal $jadwal) {
+        return view("edit", compact("jadwal"));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(jadwal $jadwal)
-    {
-        //
+    // public function update(Request $request, Jadwal $jadwal) {
+    //     $jadwal->update([
+    //         "name" => $request->name,
+    //         "email" => $request->email,
+    //         "phone" => $request->phone
+    //     ]);
+
+    //     return redirect()->route("homepage");
+    // }
+
+    public function delete(Jadwal $jadwal) {
+        $jadwal->delete();
+
+        return redirect()->route("Pengepul.pages.jadwal");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(jadwal $jadwal)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatejadwalRequest $request, jadwal $jadwal)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(jadwal $jadwal)
-    {
-        //
-    }
 }

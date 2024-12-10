@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\kualitas_kopi;
+use Illuminate\Http\Request;
 use App\Http\Requests\Storekualitas_kopiRequest;
 use App\Http\Requests\Updatekualitas_kopiRequest;
 
@@ -13,7 +13,8 @@ class KualitasKopiController extends Controller
      */
     public function index()
     {
-        //
+        $kopis = kualitas_kopi::all();
+        return view('Pengepul.pages.kopis', compact('kopis'));
     }
 
     /**
@@ -21,46 +22,38 @@ class KualitasKopiController extends Controller
      */
     public function create()
     {
-        //
+        return view("Pengepul.pages.kopis.create");
+    }
+    public function store(Request $request)
+    {
+        // bcrypt($request->password);
+        // dd($request->all());
+        $request->validate([
+            'kualitas' =>'required',
+          ]);
+        
+        kualitas_kopi::create([
+            "kulitas_kopi" => $request->kualitas
+        ]);
+
+        return redirect()->route("kopis");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Storekualitas_kopiRequest $request)
-    {
-        //
+    public function edit(kualitas_kopi $kualitas) {
+        return view("Pengepul.pages.kopis.update", compact("kualitas"));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(kualitas_kopi $kualitas_kopi)
-    {
-        //
+    public function update(Request $request, kualitas_kopi $kualitas_kopi) {
+        $kualitas_kopi->update([
+            "kulitas_kopi" => $request->kualitas
+        ]);
+
+        return redirect()->route("users");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(kualitas_kopi $kualitas_kopi)
-    {
-        //
-    }
+    public function delete(kualitas_kopi $kualitas_kopi) {
+        $kualitas_kopi->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Updatekualitas_kopiRequest $request, kualitas_kopi $kualitas_kopi)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(kualitas_kopi $kualitas_kopi)
-    {
-        //
+        return redirect()->route("Pengepul.pages.user");
     }
 }

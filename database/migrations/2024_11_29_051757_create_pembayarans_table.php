@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
+            $table->boolean('cash');
+            $table->boolean('transfer');
             $table->timestamps();
         });
     }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\staff;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorestaffRequest;
 use App\Http\Requests\UpdatestaffRequest;
 
@@ -13,7 +16,8 @@ class StaffController extends Controller
      */
     public function index()
     {
-        //
+        $staffs = staff::all();
+        return view('Pengepul.pages.staff', compact('staffs'));
     }
 
     /**
@@ -21,46 +25,44 @@ class StaffController extends Controller
      */
     public function create()
     {
-        //
+        return view("Pengepul.pages.staff.create");
+    }
+    public function store(Request $request)
+    {
+        // bcrypt($request->password);
+        // dd($request->all());
+        // $request->validate([
+        //     "name" => "required",
+        //     "handphone" => "required",
+        //     "alamat" => "required",
+        //   ]);
+        $userid = Auth::user()->id;
+        dd($userid);
+        // staff::create([
+        //     "name" => $request->name,
+        //     "phone_number" => $request->handphone,
+        //     "address" => $request->alamat,
+        //     'id_user' => $userid
+        // ]);
+
+        // return redirect()->route("staffs");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorestaffRequest $request)
-    {
-        //
+    public function edit(staff $staff) {
+        return view("Pengepul.pages.staff.update", compact("staff"));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(staff $staff)
-    {
-        //
+    public function update(Request $request, staff $staff) {
+        $staff->update([
+            "kulitas_kopi" => $request->kualitas
+        ]);
+
+        return redirect()->route("staffs");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(staff $staff)
-    {
-        //
-    }
+    public function delete(staff $staff) {
+        $staff->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatestaffRequest $request, staff $staff)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(staff $staff)
-    {
-        //
+        return redirect()->route("staffs");
     }
 }

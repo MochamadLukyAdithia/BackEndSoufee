@@ -9,4 +9,13 @@ class kualitas_kopi extends Model
 {
     /** @use HasFactory<\Database\Factories\KualitasKopiFactory> */
     use HasFactory;
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'kulitas_kopi'
+        
+    ];
 }

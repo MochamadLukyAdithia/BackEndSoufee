@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('status_penjemputans', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('status_penjemputan');
+            
+            // $table->timestamps();
         });
     }
 

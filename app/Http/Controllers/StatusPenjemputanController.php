@@ -13,7 +13,8 @@ class StatusPenjemputanController extends Controller
      */
     public function index()
     {
-        //
+        $statuss = status_penjemputan::all();
+        return view("Pengepul.pages.status", compact("statuss"));
     }
 
     /**

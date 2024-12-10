@@ -5,62 +5,55 @@ namespace App\Http\Controllers;
 use App\Models\gudang;
 use App\Http\Requests\StoregudangRequest;
 use App\Http\Requests\UpdategudangRequest;
+use Illuminate\Http\Request;
 
 class GudangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        // $gudangs = Gudang::all();
+        $gudangs = gudang::all();
+
+
+        return view("Pengepul.pages.gudang", compact('gudangs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view("Pengepul.pages.gudang.create");
+    }
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        $string = $request->kapasitas;
+        $int = (int)$string;
+        Gudang::create([
+            "kapasitas" => $int,
+            "deskripsi" => $request->deskripsi,
+        ]);
+
+        return redirect()->route("gudang");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoregudangRequest $request)
-    {
-        //
+    public function edit(Gudang $gudang) {
+        return view("Pengepul.pages.gudang.update", compact("gudang"));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(gudang $gudang)
-    {
-        //
+    public function update(Request $request, Gudang $gudang) {
+        $string = $request->kapasitas;
+        $int = (int)$string;
+        $gudang->update([
+            "kapasitas" => $int,
+            "deskripsi" => $request->deskripsi
+        ]);
+
+        return redirect()->route("gudang");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(gudang $gudang)
-    {
-        //
-    }
+    public function delete(Gudang $gudang) {
+        $gudang->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdategudangRequest $request, gudang $gudang)
-    {
-        //
+        return redirect()->route("Pengepul.pages.kopis");
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(gudang $gudang)
-    {
-        //
-    }
+  
 }

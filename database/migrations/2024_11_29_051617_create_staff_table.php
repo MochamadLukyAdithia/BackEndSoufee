@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('phone_number');
+            $table->string('address');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

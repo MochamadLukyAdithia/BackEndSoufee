@@ -9,4 +9,15 @@ class staff extends Model
 {
     /** @use HasFactory<\Database\Factories\StaffFactory> */
     use HasFactory;
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'phone_number',
+        'address',
+        'id_user'
+    ];
 }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('gudangs', function (Blueprint $table) {
             $table->id();
+            $table->integer('kapasitas');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

@@ -9,4 +9,13 @@ class gudang extends Model
 {
     /** @use HasFactory<\Database\Factories\GudangFactory> */
     use HasFactory;
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'kapasitas',
+        'deskripsi',
+    ];
 }

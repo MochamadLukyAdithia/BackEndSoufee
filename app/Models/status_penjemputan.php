@@ -9,4 +9,12 @@ class status_penjemputan extends Model
 {
     /** @use HasFactory<\Database\Factories\StatusPenjemputanFactory> */
     use HasFactory;
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'status_penjemputan',
+    ];
 }
