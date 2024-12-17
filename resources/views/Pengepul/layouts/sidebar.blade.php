@@ -2,13 +2,13 @@
   <aside id="sidebar" class="sidebar">
 
       <ul class="sidebar-nav" id="sidebar-nav">
-
+{{-- 
           <li class="nav-item">
               <a class="nav-link " href="{{ route('homepage-pengepul') }}">
                   <i class="bi bi-grid"></i>
                   <span>Dashboard</span>
               </a>
-          </li>
+          </li> --}}
           <!-- End Dashboard Nav -->
 
           {{-- <li class="nav-item">
@@ -67,7 +67,7 @@
             </a>
           </li>
           <li>
-            <a href="components-pagination.html">
+            <a h ref="components-pagination.html">
               <i class="bi bi-circle"></i><span>Pagination</span>
             </a>
           </li>
@@ -183,6 +183,12 @@
 
           <li class="nav-heading">Pages</li>
           <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('produk') }}">
+                  <i class="bi bi-basket"></i>
+                  <span>Produk</span>
+              </a>
+          </li><!-- End Profile Page Nav -->
+          <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('gudang') }}">
                   <i class="bi bi-person"></i>
                   <span>My Storage</span>
@@ -216,11 +222,29 @@
               </a>
           </li><!-- End Register Page Nav -->
           <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ 'show-permintaan' }}">
+                  <i class="bi bi-archive"></i>
+                  <span>Permintaan</span>
+              </a>
+          </li><!-- End Register Page Nav -->
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('show-transaksi') }}">
+                  <i class="bi bi-cash"></i>
+                  <span>Transaksi</span>
+              </a>
+          </li><!-- End Register Page Nav -->
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('show-pembayaran') }}">
+                  <i class="bi bi-currency-exchange"></i>
+                  <span>Pembayaran</span>
+              </a>
+          </li><!-- End Register Page Nav -->
+          {{-- <li class="nav-item">
               <a class="nav-link collapsed" href="{{ 'status' }}">
                   <i class="bi bi-calendar2-plus"></i>
                   <span>Status Penjemputan</span>
               </a>
-          </li><!-- End Register Page Nav -->
+          </li><!-- End Register Page Nav --> --}}
 
       </ul>
 

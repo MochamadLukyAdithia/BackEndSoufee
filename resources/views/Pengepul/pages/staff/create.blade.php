@@ -5,7 +5,7 @@
             @csrf
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nama</label>
-                <input type="text" name="name" class="form-control" id="exampleFormControlInput1"
+                <input type="text" name="nama" class="form-control" id="exampleFormControlInput1"
                     placeholder="Masukkan Nama">
             </div>
             <div class="mb-3">
@@ -21,6 +21,11 @@
             <div class="col-12">
                 <button class="btn btn-success w-100" type="submit">Simpan</button>
             </div>
+            @if ($message = Session::get('success'))
+                <script>
+                    Swal.fire('{{ $message }}');
+                </script>
+            @endif
         </form>
     </main>
 @endsection

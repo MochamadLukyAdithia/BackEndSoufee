@@ -31,21 +31,21 @@ class StaffController extends Controller
     {
         // bcrypt($request->password);
         // dd($request->all());
-        // $request->validate([
-        //     "name" => "required",
-        //     "handphone" => "required",
-        //     "alamat" => "required",
-        //   ]);
+        $request->validate([
+            "nama" => "required",
+            "handphone" => "required",
+            "alamat" => "required",
+          ]);
         $userid = Auth::user()->id;
-        dd($userid);
-        // staff::create([
-        //     "name" => $request->name,
-        //     "phone_number" => $request->handphone,
-        //     "address" => $request->alamat,
-        //     'id_user' => $userid
-        // ]);
+        // dd($request->all());
+        staff::create([
+            "nama" => $request->nama,
+            "phone_number" => $request->handphone,
+            "address" => $request->alamat,
+            'user_id' => $userid
+        ]);
 
-        // return redirect()->route("staffs");
+        return redirect()->route("staffs")->with('success','Data Berhasil Ditambahkan');
     }
 
     public function edit(staff $staff) {
@@ -63,6 +63,6 @@ class StaffController extends Controller
     public function delete(staff $staff) {
         $staff->delete();
 
-        return redirect()->route("staffs");
+        return redirect()->back()->with('success', 'Staff deleted successfully');
     }
 }

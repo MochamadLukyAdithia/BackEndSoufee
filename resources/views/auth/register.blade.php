@@ -1,129 +1,97 @@
 @extends('partials.main')
 @section('title', 'Soufee | Daftar')
 @section('content')
-    <main>
-        <div class="container">
+    <main class="w-full h-screen flex justify-center items-center">
+        <section class="w-[1350px] h-[700px] grid grid-cols-2 rounded-lg p-4 gap-6 bg-[#f9f7ed] ">
+            {{-- @include('_message') --}}
+            <div class="h-full w-full flex items-center justify-center flex-col relative">
+                <div class="flex justify-center absolute top-6 flex-col text-center w-[80%]">
+                    <a href="/">
+                        <i data-feather="arrow-left" class="absolute top-4 left-0 cursor-pointer"></i>
+                    </a>
+                    <p style="font-family: 'Montserrat', sans-serif;" class="text-5xl font-bold text-[#1C3F3A]">Soufee</p>
+                    <p style="font-family: 'Montserrat', sans-serif;" class="text-3xl font-semibold mt-6 text-black">
+                        Daftarkan akun Anda!</p>
+                    <p style="font-family: 'Montserrat', sans-serif;" class="text-xl text-black">Mohon masukkan data akun
+                    </p>
+                </div>
+                <form class="mt-36 w-[80%]" action="{{ route('register-proses') }}" method="get" id="daftar-pengepul">
+                    @csrf
+                    <!-- Button Group -->
+                    <div class="flex flex-row justify-center">
+                        <div class="">
+                            <input type="radio" class="btn-check" name="role" id="btnPengepul" value="pengepul"
+                                autocomplete="off" required>
+                            <label class="btn btn-outline-success" for="btnPengepul">Pengepul</label>
 
-            <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-                            <div class="d-flex justify-content-center py-4">
-                                <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="img/logo.png" alt="">
-                                    
-                                </a>
-                            </div><!-- End Logo -->
-
-                            <div class="card mb-3">
-
-                                <div class="card-body">
-
-                                    <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Buat Akun</h5>
-                                        <p class="text-center small">Enter your personal details to create account</p>
-                                    </div>
-                                    {{-- @include('_message') --}}
-
-                                    <form class="row g-3 needs-validation" action="{{ route('register-proses') }}"
-                                        method="get" id="daftar-penge">
-                                        @csrf
-                                        <!-- Button Group -->
-                                        <div class="col-12 d-flex justify-content-center mb-3">
-                                            <div class="btn-group" role="group" aria-label="Role selection">
-                                                <input type="radio" class="btn-check" name="role" id="btnPengepul"
-                                                    value="pengepul" autocomplete="off" required>
-                                                <label class="btn btn-outline-success" for="btnPengepul">Pengepul</label>
-
-                                                <input type="radio" class="btn-check" name="role" id="btnPetani"
-                                                    value="petani" autocomplete="off">
-                                                <label class="btn btn-outline-success" for="btnPetani">Petani</label>
-                                            </div>
-                                        </div>
-
-                                        <!-- Name Field -->
-                                        <div class="col-12">
-                                            <label for="yourName" class="form-label">Your Name</label>
-                                            <input type="text" name="name" class="form-control" id="yourName"
-                                                value="{{ old('name') }}">
-                                            <div class="invalid-feedback">Please, enter your name!</div>
-                                            @error('name')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-                                        <!-- Email Field -->
-                                        <div class="col-12">
-                                            <label for="yourEmail" class="form-label">Your Email</label>
-                                            <input type="email" name="email" class="form-control" id="yourEmail"
-                                                value="{{ old('email') }}" required>
-                                            <div class="invalid-feedback">Please enter a valid Email address!</div>
-                                            @error('email')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-                                        <!-- Telephone Field -->
-                                        {{-- <div class="col-12">
-                                            <label for="telephone" class="form-label">Your Telephone</label>
-                                            <input type="text" name="telephone" class="form-control" id="yourTelephone"
-                                                value="{{ old('telephone') }}" required>
-                                            <div class="invalid-feedback">Please enter a valid Email address!</div>
-                                            <div class="invalid-feedback">Please enter a valid Telephone</div>
-                                            @error('telephone')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div> --}}
-
-
-                                        <!-- Password Field -->
-                                        <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="yourPassword"
-                                                required>
-                                            <div class="invalid-feedback">Please enter your password!</div>
-                                            @error('password')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-                                        <!-- Terms and Conditions -->
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="terms" type="checkbox"
-                                                    value="" id="acceptTerms" required>
-                                                <label class="form-check-label" for="acceptTerms">
-                                                    I agree and accept the <a href="#">terms and conditions</a>
-                                                </label>
-                                                <div class="invalid-feedback">You must agree before submitting.</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Submit Button -->
-                                        <div class="col-12">
-                                            <button class="btn bg-[#1C3F3A] w-100 text-white w-100" type="submit">Create Account</button>
-                                        </div>
-
-                                        <!-- Already Registered -->
-                                        <div class="col-12">
-                                            <p class="small mb-0">Already have an account? <a href="{{ route('login')}}"><span class="text-blue-500">Log
-                                                    in</span></a></p>
-                                        </div>
-                                    </form>
-
-
-                                </div>
-                            </div>
-
-
-
+                            <input type="radio" class="btn-check" name="role" id="btnPetani" value="petani"
+                                autocomplete="off">
+                            <label class="btn btn-outline-success" for="btnPetani">Petani</label>
                         </div>
                     </div>
-                </div>
 
-            </section>
+                    <!-- Name Field -->
+                    <div class="">
+                        <label for="yourName" class="form-label">Nama Lengkap</label>
+                        <input type="text" name="name" class="form-control" id="yourName"
+                            value="{{ old('name') }}">
+                        <div class="invalid-feedback">Mohon masukkan nama lengkap Anda!</div>
+                        @error('name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-        </div>
+                    <!-- Email Field -->
+                    <div class="">
+                        <label for="yourEmail" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="yourEmail" value="{{ old('email') }}"
+                            required>
+                        <div class="invalid-feedback">Mohon masukkan alamat email yang valid!</div>
+                        @error('email')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="mb-12">
+                        <label for="yourPassword" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="yourPassword" required>
+                        <div class="invalid-feedback">Mohon masukkan password Anda!</div>
+                        @error('password')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms"
+                                required>
+                            <label class="form-check-label" for="acceptTerms">
+                                Saya setuju dan menerima <a href="#" class="font-semibold">Syarat & Ketentuan</a>
+                            </label>
+                            <div class="invalid-feedback">Harus menyetujui sebelum submit.</div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="mb-6">
+                        <button class="bg-[#1C3F3A] hover:bg-[#1C3F3A]/90 w-full text-white py-[15px] rounded-lg"
+                            type="submit">Daftar</button>
+                    </div>
+
+                    <!-- Already Registered -->
+                    <div class="flex justify-center">
+                        <p class="small mb-0">Sudah memiliki akun? <a href="{{ route('login') }}"><span
+                                    class="text-[#1C3F3A] font-semibold">Masuk</span></a></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="h-full w-full rounded-lg overflow-hidden">
+                <img src="{{ asset('img/login-img.jpg') }}" alt="" class="h-full w-full object-cover object-center">
+            </div>
+
+        </section>
     </main><!-- End #main -->
 @endsection

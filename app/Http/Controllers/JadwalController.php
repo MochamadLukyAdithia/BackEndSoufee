@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\jadwal;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StorejadwalRequest;
 use App\Http\Requests\UpdatejadwalRequest;
 
@@ -10,7 +11,9 @@ class JadwalController extends Controller
 {
     public function index()
     { 
-        $jadwals = jadwal::all();
+        $jadwals = DB::table('jadwals')
+        ->join('status_penjemputans','status_penjemputans.id', '=', 'jadwals.status_id')
+        ->get();
         return view("Pengepul.pages.jadwal", compact("jadwals"));
             
     }

@@ -1,5 +1,6 @@
 @extends('Pengepul.layouts.app')
 @section('content')
+{{-- @dd($jadwals); --}}
     <main id="main" class="main">
 
         <div class="pagetitle">
@@ -29,23 +30,23 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Waktu Penjemputan</th>
-                                        <th>Status_id</th>
+                                        <th>Status Penjemputan</th>
                                         <th  style="text-align: justify">Edit</th>
                                         <th style="text-align: justify">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($statuss as $status)
+                                    @foreach ($jadwals as $status)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $status->waktu_penjemputan }}</td>
-                                            <td>{{ $status->status_id }}</td>
+                                            <td>{{ $status->status_penjemputan }}</td>
                                             <td>
-                                                <a href="{{ route('edit-gudang', $gudang->id) }}"
+                                                <a href="{{ route('edit-jadwal', $status->id) }}"
                                                     class="px-2 py-1 rounded-lg text-white bg-yellow-500 hover:bg-yellow-700">Edit</a>
                                             </td> 
                                             <td>
-                                                <form action="{{ route('delete-gudang', $gudang->id) }}" method="POST">
+                                                <form action="{{ route('delete-jadwal', $status->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button class="px-2 py-1 rounded-lg text-white bg-red-500 hover:bg-red-700"

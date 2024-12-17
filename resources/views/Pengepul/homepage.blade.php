@@ -2,7 +2,6 @@
 @section('title', 'Soufee | Pengepul')
 @section('content')
   <main id="main" class="main">
-
     <div class="pagetitle">
       <h1>Dashboard</h1>
       <nav>
@@ -13,7 +12,7 @@
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
+    {{-- <section class="section dashboard">
       <div class="row">
 
         <!-- Left side columns -->
@@ -645,8 +644,9 @@
         </div><!-- End Right side columns -->
 
       </div>
-    </section>
+    </section> --}}
 
   </main><!-- End #main -->
+  {{-- @include('Pengepul.pages.gudangs') --}}
 
 @endsection

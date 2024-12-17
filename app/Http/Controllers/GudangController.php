@@ -15,7 +15,7 @@ class GudangController extends Controller
         $gudangs = gudang::all();
 
 
-        return view("Pengepul.pages.gudang", compact('gudangs'));
+        return view("Pengepul.pages.gudan", compact('gudangs'));
     }
 
     public function create()

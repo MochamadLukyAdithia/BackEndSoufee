@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('id_user')->references('id')->on('users');
             $table->bigInteger('jumlah_kopi');
             $table->text('new_alamat')->nullable();
+            $table->string('new_alamat');
             $table->timestamps();
         });
     }

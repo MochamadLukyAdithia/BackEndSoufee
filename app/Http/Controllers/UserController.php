@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\gudang;
-use App\Models\kualitas_kopi;
+use App\Models\Produk;
+use App\Models\Permintaan;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Models\kualitas_kopi;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 class UserController extends Controller
@@ -16,6 +19,22 @@ class UserController extends Controller
     {
         return view('Pengepul.homepage');
     }
+
+    // public function notifications(Request $request)
+    // {
+    //     $viewAll = $request->query('view_all', false); // Cek apakah "view_all" ada di URL
+    //     $limit = $viewAll ? null : 4; // Jika "view_all" true, tampilkan semua; jika tidak, batasi 4
+
+    //     $permintaans = Permintaan::orderBy('created_at', 'desc')->limit($limit)->get();
+    //     $totalNotifications = Permintaan::count(); // Hitung total notifikasi
+
+    //     return view('Pengepul.homepage', [
+    //         'permintaans' => $permintaans,
+    //         'totalNotifications' => $totalNotifications,
+    //         'viewAll' => $viewAll,
+    //     ]);
+    // }
+
     public function show_user()
     {
         $users = User::all();
@@ -37,23 +56,27 @@ class UserController extends Controller
     {
         $names = User::where('role', 'pengepul')->pluck('name');
         $hargas = kualitas_kopi::all();
-        $gudangs = gudang::all();
-        return view('Petani.pages.home', compact('names', 'hargas'));
+        $id = User::where('role', 'pengepul')->pluck('id');
+        $gudangs = gudang::where('id', $id)->get();
+        $produks = Produk::all();
+        foreach ($hargas as $harga) {
+            return view('Petani.pages.home', compact('names', 'hargas', 'gudangs', 'produks'));
+        }
+        // $gudangs = gudang::all();
+
     }
-    public function create_gambar(Request $request)
+    public function create_gambar(Request $request, User $user)
     {
 
-        $nama = $request->foto;
-        $namafile = $nama->getOriginalName();
-        $user = new User();
-        $user->foto = $namafile;
-        // use Illuminate\Support\Facades\Request;
-        $nama->move(public_path() . '/images', $namafile);
-        $user->save();
+        if ($request->hasFile('foto')) {
+            $gambar = $request->file('foto');
+            $newName = time() . "." . $gambar->getClientOriginalExtension();
+            $gambar->move(public_path('img'), $newName);
+        }
         DB::table('users')
             ->where('id', $user->id)
             ->update([
-                'gambar' => $namafile
+                'gambar' => $newName
             ]);
         return redirect()->route('users');
     }

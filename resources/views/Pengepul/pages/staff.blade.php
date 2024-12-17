@@ -40,7 +40,7 @@
                                     @foreach ($staffs as $staff)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $staff->name }}</td>
+                                            <td>{{ $staff->nama }}</td>
                                             <td>{{ $staff->phone_number }}</td>
                                             <td>{{ $staff->address }}</td>
                                            

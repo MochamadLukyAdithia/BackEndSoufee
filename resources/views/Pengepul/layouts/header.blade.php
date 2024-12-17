@@ -1,42 +1,32 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="img/logo.png" alt="">
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
-
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
+      <div class="d-flex align-items-center justify-content-between">
+          <a href="index.html" class="logo d-flex align-items-center">
+              <img src="img/logo.png" alt="">
           </a>
-        </li><!-- End Search Icon-->
+          <i class="bi bi-list toggle-sidebar-btn"></i>
+      </div><!-- End Logo -->
 
-        <li class="nav-item dropdown">
+      {{-- <div class="search-bar">
+          <form class="search-form d-flex align-items-center" method="POST" action="#">
+              <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+              <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+          </form>
+      </div><!-- End Search Bar --> --}}
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
+      <nav class="header-nav ms-auto">
+          <ul class="d-flex align-items-center">
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
+              <li class="nav-item d-block d-lg-none">
+                  <a class="nav-link nav-icon search-bar-toggle " href="#">
+                      <i class="bi bi-search"></i>
+                  </a>
+              </li><!-- End Search Icon-->
+
+              <li class="nav-item dropdown">
+
+                  {{-- <li>
               <hr class="dropdown-divider">
             </li>
 
@@ -73,33 +63,66 @@
                 <p>Quae dolorem earum veritatis oditseno</p>
                 <p>2 hrs. ago</p>
               </div>
-            </li>
+            </li> --}}
+                  {{-- @dd() --}}
+                  @php
+                      use App\Models\User;
+                      use App\Models\gudang;
+                      use App\Models\Permintaan;
+                      use Illuminate\Http\Request;
+                      use App\Models\kualitas_kopi;
+                      use Illuminate\Routing\Controller;
+                      $permintaans = Permintaan::all();
+                      foreach ($permintaans as $permintaan);
+                      $id = $permintaan->id_user;
+                      $username = User::where('id', $id)->pluck('name');
+                      // foreach ($permintaans as $permintaan);
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                      $jumlah = $permintaan->id;
+                  @endphp
+                  {{-- @dd($permintaans) --}}
 
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
+                  <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                      <i class="bi bi-bell"></i>
+                      <span class="badge bg-primary badge-number">{{ $jumlah }}</span>
+                  </a><!-- End Notification Icon -->
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications min-w-80">
+                      <li class="dropdown-header">
+                          <h3 class="text-secondary fw-bold">You have {{ $jumlah }} new notifications</h3>
+                          {{-- <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a> --}}
+                      </li>
 
-          </ul><!-- End Notification Dropdown Items -->
+                      @foreach ($permintaans as $p)
+                          <li>
+                              <hr class="dropdown-divider">
+                          </li><a href="">
+                              <li class="notification-item">
+                                  <i class="bi bi-info-circle text-primary"></i>
+                                  <div>
+                                      <h4 class="">Permintaan dari
+                                          {{ str_replace(['[', ']', '"'], '', $username) }}</h4>
+                                      {{-- <h5 class="mb-2 fw-bold"></h5> --}}
+                                      <p>Penjemputan Kopi Sebanyak <span class="fw-bold">{{ $p->jumlah_kopi }} kg
+                                              Kopi</span></p>
+                                      {{-- <p>4 hrs. ago</p> --}}
+                                  </div>
+                              </li>
+                          </a>
+                      @endforeach
 
-        </li><!-- End Notification Nav -->
+                      <li>
+                          <hr class="dropdown-divider">
+                      </li>
+                      <li class="dropdown-footer">
+                          <a href="#">Show all notifications</a>
+                      </li>
 
-        <li class="nav-item dropdown">
+                  </ul><!-- End Notification Dropdown Items -->
+
+              </li><!-- End Notification Nav -->
+
+              {{-- <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
@@ -163,65 +186,66 @@
 
           </ul><!-- End Messages Dropdown Items -->
 
-        </li><!-- End Messages Nav -->
+        </li><!-- End Messages Nav --> --}}
 
-        <li class="nav-item dropdown pe-3">
+              <li class="nav-item dropdown pe-3">
 
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="img/1.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Mochamad Luky Adithia</span>
-          </a><!-- End Profile Iamge Icon -->
+                  <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                      data-bs-toggle="dropdown">
+                      <img src="img/1.jpg" alt="Profile" class="rounded-circle">
+                      <span class="d-none d-md-block dropdown-toggle ps-2">Mochamad Luky Adithia</span>
+                  </a><!-- End Profile Iamge Icon -->
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Mochamad Luky Adithia</h6>
-              <span>Web Designer</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                      <li class="dropdown-header">
+                          <h6>Mochamad Luky Adithia</h6>
+                          <span>Web Designer</span>
+                      </li>
+                      <li>
+                          <hr class="dropdown-divider">
+                      </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>My Storage</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                      <li>
+                          <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                              <i class="bi bi-person"></i>
+                              <span>My Storage</span>
+                          </a>
+                      </li>
+                      <li>
+                          <hr class="dropdown-divider">
+                      </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                      <li>
+                          <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                              <i class="bi bi-gear"></i>
+                              <span>Account Settings</span>
+                          </a>
+                      </li>
+                      <li>
+                          <hr class="dropdown-divider">
+                      </li>
+{{-- 
+                      <li>
+                          <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                              <i class="bi bi-question-circle"></i>
+                              <span>Need Help?</span>
+                          </a>
+                      </li>
+                      <li> --}}
+                          <hr class="dropdown-divider">
+                      </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                      <li>
+                          <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">
+                              <i class="bi bi-box-arrow-right"></i>
+                              <span>Sign Out</span>
+                          </a>
+                      </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
+                  </ul><!-- End Profile Dropdown Items -->
+              </li><!-- End Profile Nav -->
 
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navigation -->
+          </ul>
+      </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->

@@ -1,87 +1,74 @@
 @extends('partials.main')
 @section('title', 'Soufee | Login')
 @section('content')
-    <main>
-        <div class="container">
-
-            <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-                            <div class="d-flex justify-content-center py-4">
-                                <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="{{ 'img/logo.png' }}" alt="">
-                                    
-                                </a>
-                            </div><!-- End Logo -->
-
-                            <div class="card mb-3">
-
-                                <div class="card-body">
-
-                                    <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Login ke Akunmu</h5>
-                                        <p class="text-center small">Masukkan username & password untuk login</p>
-                                    </div>
-                                    {{-- @include('_message') --}}
-                                    <form class="row g-3 " method="POST"
-                                        action="{{ route('login-proses') }}">
-
-                                        @csrf
-                                        <div class="col-12">
-                                            <label for="yourEmail" class="form-label">Email</label>
-                                            <div class="input-group has-validation">
-                                                <input type="text" name="email" class="form-control" id="yourEmail"
-                                                    required>
-                                                <div class="invalid-feedback">Please enter your Email.</div>
-                                            </div>
-                                        </div>
-                                        @error('email')
-                                            <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-
-                                        <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="yourPassword">
-                                            <div class="invalid-feedback">Please enter your password!</div>
-                                        </div>
-                                        @error('username')
-                                            <p>{{ $message }}</p>
-                                        @enderror
-
-
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember"
-                                                    value="true" id="rememberMe">
-                                                <label class="form-check-label" for="rememberMe">Ingat aku</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">Login</button>
-                                        </div>
-                                        <div class="col-12">
-                                            <p class="small mb-0 ">Belum memiliki akun? <a
-                                                    href="{{ route('register') }}"><span class="text-blue-500">Buat akun sekarang</span></a></p>
-                                        </div>
-                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                                        @if ($message = Session::get('error'))
-                                            <script>
-                                                Swal.fire('{{ $message }}');
-                                            </script>
-                                        @endif
-                                    </form>
-                                </div>
-                            </div>
+    <main class="w-full h-screen flex justify-center items-center">
+        <section class="w-[1350px] h-[700px] grid grid-cols-2 rounded-lg p-4 gap-6 bg-[#f9f7ed] ">
+            {{-- @include('_message') --}}
+            <div class="h-full w-full flex items-center justify-center flex-col relative">
+                <div class="flex justify-center absolute top-6 flex-col text-center w-[80%]">
+                    <a href="/">
+                        <i data-feather="arrow-left" class="absolute top-4 left-0 cursor-pointer"></i>
+                    </a>
+                    <p style="font-family: 'Montserrat', sans-serif;" class="text-5xl font-bold text-[#1C3F3A]">Soufee</p>
+                    <p style="font-family: 'Montserrat', sans-serif;" class="text-3xl font-semibold mt-12 text-black">Selamat
+                        datang kembali!</p>
+                    <p style="font-family: 'Montserrat', sans-serif;" class="text-xl text-black">Mohon masukkan data akun
+                    </p>
+                </div>
+                <form class="mt-32 w-[80%]" method="POST" action="{{ route('login-proses') }}">
+                    @csrf
+                    <div class="">
+                        <label for="yourEmail" class="form-label">Email</label>
+                        <div class="input-group has-validation">
+                            <input type="text" name="email" class="form-control" id="yourEmail" required>
+                            <div class="invalid-feedback">Mohon masukkan email Anda!.</div>
                         </div>
                     </div>
-                </div>
+                    @error('email')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
 
-            </section>
+                    <div class="mb-12">
+                        <label for="yourPassword" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="yourPassword">
+                        <div class="invalid-feedback">Mohon masukkan password Anda!</div>
+                    </div>
+                    @error('username')
+                        <p>{{ $message }}</p>
+                    @enderror
 
-        </div>
-    </main><!-- End #main -->
+
+                    <div class="mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Ingat aku</label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <button class="bg-[#1C3F3A] hover:bg-[#1C3F3A]/90 w-full text-white py-[15px] rounded-lg"
+                            type="submit">Masuk</button>
+                    </div>
+                    <div class="flex justify-center">
+                        <p class="">Belum memiliki akun? <a href="{{ route('register') }}"><span
+                                    class="text-[#1C3F3A] hover:text-[#1C3F3A]/90 font-semibold">Buat akun
+                                    sekarang</span></a></p>
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    @if ($message = Session::get('error'))
+                        <script>
+                            Swal.fire('{{ $message }}');
+                        </script>
+                    @endif
+                </form>
+            </div>
+
+            <div class="h-full w-full rounded-lg overflow-hidden">
+                <img src="{{ asset('img/login-img.jpg') }}" alt="" class="h-full w-full object-cover object-center">
+            </div>
+
+        </section>
+    </main>
+    <!-- End #main -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
@@ -98,5 +85,5 @@
 
     <!-- Template Main JS File -->
     <script src="{{ 'assets/js/main.js' }}"></script>
-   
+
 @endsection
