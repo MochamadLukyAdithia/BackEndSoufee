@@ -195,12 +195,12 @@
               </a>
           </li><!-- End Profile Page Nav -->
 
-          <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ 'users' }}">
-                  <i class="bi bi-question-circle"></i>
-                  <span>User</span>
-              </a>
-          </li><!-- End F.A.Q Page Nav -->
+            {{-- <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ 'users' }}">
+                    <i class="bi bi-question-circle"></i>
+                    <span>User</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav --> --}}
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="{{ 'kopis' }}">
