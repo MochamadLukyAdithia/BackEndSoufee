@@ -31,13 +31,17 @@ Route::get('/register',[AuthController::class, 'register'])->name('register');
 Route::get('/register/proses',[AuthController::class, 'register_proses'])->name('register-proses');
 Route::get('/form-{tableName}', [UserController::class, 'showForm']);
 
-
-
 Route::middleware('auth')->group(function () {
     // Route::get('/homepage-pengepul',[UserController::class, 'header'])->middleware('cekrole:pengepul')->name('homepage-pengepul');
-    Route::get('/homepage-pengepul',[UserController::class, 'index'])->middleware('cekrole:pengepul')->name('homepage-pengepul');
-    Route::get('/homepage-petani',[UserController::class, 'homepage_petani'])->middleware('cekrole:petani')->name('homepage-petani');
+    Route::get('/homepage-pengepul',[UserController::class, 'index'])
+    ->middleware('cekrole:pengepul')
+    ->name('homepage-pengepul');
+
+    Route::get('/homepage-petani',[UserController::class, 'homepage_petani'])
+    ->middleware('cekrole:petani')
+    ->name('homepage-petani');
 });
+
 Route::middleware('cekrole:pengepul')->group(function (){
     Route::get('/gudang',[GudangController::class, 'index'])->name('gudang');
     Route::get('/users',[UserController::class, 'show_user'])->name('users');

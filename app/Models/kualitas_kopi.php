@@ -16,6 +16,5 @@ class kualitas_kopi extends Model
      */
     protected $fillable = [
         'kulitas_kopi'
-        
     ];
 }

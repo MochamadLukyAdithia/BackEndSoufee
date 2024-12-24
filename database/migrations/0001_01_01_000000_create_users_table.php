@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('handphone')->nullable();
             $table->string('alamat')->nullable();
             $table->string('role');
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

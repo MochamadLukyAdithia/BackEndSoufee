@@ -65,13 +65,14 @@
               </div>
             </li> --}}
                   {{-- @dd() --}}
-                  @php
+                  {{-- @php
                       use App\Models\User;
                       use App\Models\gudang;
                       use App\Models\Permintaan;
                       use Illuminate\Http\Request;
                       use App\Models\kualitas_kopi;
                       use Illuminate\Routing\Controller;
+                      
                       $permintaans = Permintaan::all();
                       foreach ($permintaans as $permintaan);
                       $id = $permintaan->id_user;
@@ -79,17 +80,17 @@
                       // foreach ($permintaans as $permintaan);
 
                       $jumlah = $permintaan->id;
-                  @endphp
+                  @endphp --}}
                   {{-- @dd($permintaans) --}}
 
                   <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                       <i class="bi bi-bell"></i>
-                      <span class="badge bg-primary badge-number">{{ $jumlah }}</span>
+                      <span class="badge bg-primary badge-number"></span> {{-- {{ $jumlah }} --}}
                   </a><!-- End Notification Icon -->
 
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications min-w-80">
                       <li class="dropdown-header">
-                          <h3 class="text-secondary fw-bold">You have {{ $jumlah }} new notifications</h3>
+                          <h3 class="text-secondary fw-bold">You have  new notifications</h3> {{-- {{ $jumlah }} --}}
                           {{-- <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a> --}}
                       </li>
 

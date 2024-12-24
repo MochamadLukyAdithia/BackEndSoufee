@@ -21,8 +21,7 @@ class Permintaan extends Model
         'id_user',
         'jumlah_kopi',
         'new_alamat',
-        'handphone'
-        
+        'handphone',
     ];
     
 }

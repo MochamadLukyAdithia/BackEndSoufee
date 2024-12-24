@@ -17,7 +17,15 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('Pengepul.homepage');
+        $permintaans = Permintaan::all();
+            foreach ($permintaans as $permintaan);
+                $id = $permintaan->id_user;
+                $username = User::where('id', $id)->pluck('name');
+                // foreach ($permintaans as $permintaan);
+
+                $jumlah = $permintaan->id;
+
+        return view('Pengepul.homepage', compact('permintaans', 'username', 'jumlah'));
     }
 
     // public function notifications(Request $request)
@@ -37,6 +45,7 @@ class UserController extends Controller
 
     public function show_user()
     {
+
         $users = User::all();
         return view('Pengepul.pages.user', compact('users'));
     }

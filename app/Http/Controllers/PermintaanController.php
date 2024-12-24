@@ -33,8 +33,7 @@ class PermintaanController extends Controller
         //
     }
     public function show() {
-        $permintaans
-         = Permintaan::all();
+        $permintaans = Permintaan::all();
         return view('Pengepul.pages.permintaan', compact('permintaans'));
     }
 

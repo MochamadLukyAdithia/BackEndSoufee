@@ -46,7 +46,7 @@
                                             <td class="bg-success-subtle">{{ $transaksi->jumlah_kopi }}</td>
                                             <td class="bg-success-subtle">{{ $transaksi->harga }}</td>
                                             <td class="bg-success-subtle">{{ $transaksi->harga * $transaksi->jumlah_kopi }}</td>
-                                            <td class="bg-success-subtle">{{ $transaksi->kulitas_kopi }}</td>
+                                            <td class="bg-success-subtle">{{ $transaksi->kualitas_kopi }}</td>
                                             <td class="bg-success-subtle">{{ $transaksi->metode }}</td>
                                             <td class="bg-success-subtle">{{ $transaksi->created_at }}</td>
                                             <td class="bg-success-subtle">{{ $transaksi->updated_at }}</td>
